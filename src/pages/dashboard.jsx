@@ -15,11 +15,11 @@ const Dashboard = () => {
   useEffect(() => {
     const amountExpense = transactionsList
       .filter((item) => item.expense)
-      .map((transaction) => Number(transaction.amount));
+      .map((transaction) => Number(transaction.valor));
 
     const amountIncome = transactionsList
       .filter((item) => !item.expense)
-      .map((transaction) => Number(transaction.amount));
+      .map((transaction) => Number(transaction.valor));
 
     const expense = amountExpense.reduce((acc, Cur) => acc + Cur, 0).toFixed(2);
     const income = amountIncome.reduce((acc, Cur) => acc + Cur, 0).toFixed(2);
@@ -30,11 +30,23 @@ const Dashboard = () => {
     setExpense(`R$ ${expense}`);
     setTotal(`${Number(income) < Number(expense) ? "-" : ""}R$ ${total}`);
   }, [transactionsList]);
+
+  const handleAdd = (transaction) => {
+    const newArrayTransactions = [...transactionsList, transaction];
+
+    setTransactionsList(newArrayTransactions);
+
+    localStorage.setItem("transactions", JSON.stringify(newArrayTransactions));
+  };
   return (
     <div>
       <Header />
       <Cards income={income} expense={expense} total={total} />
-      <Form />
+      <Form
+        handleAdd={handleAdd}
+        transactionsList={transactionsList}
+        setTransactionsList={setTransactionsList}
+      />
     </div>
   );
 };

@@ -7,7 +7,7 @@ import {
 } from "react-icons/fa";
 const Cards = ({ income, expense, total }) => {
   return (
-    <div className="flex justify-evenly my-5 mx-auto">
+    <div className="w-full max-w-4xl mx-auto my-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
       <CardsItem title="Entradas" Icon={FaArrowAltCircleUp} value={income} />
       <CardsItem title="Saídas" Icon={FaArrowAltCircleDown} value={expense} />
       <CardsItem title="Total" Icon={FaDollarSign} value={total} />

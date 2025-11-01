@@ -2,11 +2,13 @@ import React from "react";
 
 const Header = () => {
   return (
-    <div className="bg-cyan-700 py-7 flex justify-center m-auto">
-      <h1 className="text-3xl font-bold text-amber-50">
-        Controle De Financias
-      </h1>
-    </div>
+    <header className="bg-gradient-to-r from-teal-600 to-teal-700 shadow-sm">
+      <div className="max-w-4xl mx-auto py-6 px-4 flex justify-center items-center">
+        <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-wide">
+          Controle de Finanças
+        </h1>
+      </div>
+    </header>
   );
 };
 

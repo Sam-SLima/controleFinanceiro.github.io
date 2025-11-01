@@ -30,50 +30,67 @@ const Form = ({ handleAdd, transactionsList, setTransactionsList }) => {
   };
   return (
     <>
-      <div className="w-[98%] bg-amber-100 rounded-[5px] flex justify-around py-4 px-0 gap-2.5">
-        <div className="flex flex-col">
-          <label>Descrição</label>
+      <div className="w-full max-w-4xl mx-auto bg-teal-50 rounded-xl shadow-sm flex flex-wrap justify-between items-end gap-4 p-4 sm:p-6">
+        <div className="flex flex-col flex-1 min-w-[200px]">
+          <label
+            htmlFor="descricao"
+            className="text-sm font-medium text-gray-700 mb-1"
+          >
+            Descrição
+          </label>
           <input
+            id="descricao"
             value={descricao}
             onChange={(e) => setDescricao(e.target.value)}
-            className="outline-none rounded-[5px] py-1.5 px-2.5 text-[15px]"
+            className="border border-gray-300 focus:border-teal-500 focus:ring-1 focus:ring-teal-500 rounded-lg py-2 px-3 text-sm text-gray-800 outline-none transition-all"
             type="text"
+            placeholder="Ex: Salário, Compra no mercado..."
           />
         </div>
-        <div className="flex flex-col">
-          <label>Valor</label>
+        <div className="flex flex-col flex-1 min-w-[150px]">
+          <label
+            htmlFor="valor"
+            className="text-sm font-medium text-gray-700 mb-1"
+          >
+            Valor
+          </label>
           <input
+            id="valor"
             value={valor}
             onChange={(e) => setValor(e.target.value)}
-            className="outline-none rounded-[5px] py-1.5 px-2.5 text-[15px]"
+            className="border border-gray-300 focus:border-teal-500 focus:ring-1 focus:ring-teal-500 rounded-lg py-2 px-3 text-sm text-gray-800 outline-none transition-all"
             type="number"
+            placeholder="R$ 0,00"
           />
         </div>
-        <div className="flex items-center">
-          <div className="mx-2.5">
+        <fieldset className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-sm text-gray-700">
+          <legend className="sr-only">Tipo de transação</legend>
+          <label className="flex items-center gap-2 cursor-pointer">
             <input
               type="radio"
-              name="group1"
+              name="tipo"
               id="rIncome"
-              defaultChecked
-              onChange={() => setExpense(!expense)}
+              checked={!expense}
+              onChange={() => setExpense(false)}
+              className="text-teal-600 focus:ring-teal-500"
             />
-            <label htmlFor="rIncome">Entrada</label>
-          </div>
-          <div>
+            <span>Entrada</span>
+          </label>
+          <label className="flex items-center gap-2 cursor-pointer">
             <input
               type="radio"
-              name="group1"
+              name="tipo"
               id="rExpense"
-              onChange={() => setExpense(!expense)}
+              checked={expense}
+              onChange={() => setExpense(true)}
+              className="text-rose-600 focus:ring-rose-500"
             />
-            <label htmlFor="rIncome">Saída</label>
-          </div>
-        </div>
-
+            <span>Saída</span>
+          </label>
+        </fieldset>
         <button
           onClick={handleSave}
-          className="py-1.5 px-2.5 rounded-[5px] cursor-pointer text-amber-50 bg-teal-600"
+          className="bg-teal-600 hover:bg-teal-700 active:bg-teal-800 text-white font-medium py-2 px-4 rounded-lg transition-all shadow-sm min-w-[120px]"
           type="submit"
         >
           Adicionar

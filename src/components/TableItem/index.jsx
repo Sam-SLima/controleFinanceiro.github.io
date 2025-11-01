@@ -4,21 +4,42 @@ import {
   FaRegArrowAltCircleDown,
   FaTrash,
 } from "react-icons/fa";
+
 const TableItem = ({ item, onDelete }) => {
+  const isExpense = item.expense;
+
   return (
-    <tr>
-      <td>{item.descricao}</td>
-      <td>{item.valor}</td>
-      <td>
-        {item.expense ? (
-          <FaRegArrowAltCircleDown color="red" />
+    <tr className="border-t hover:bg-teal-50 transition-colors">
+      <td className="px-4 py-3 font-medium text-gray-800 break-words">
+        {item.descricao}
+      </td>
+
+      <td className="px-4 py-3 text-gray-700">
+        R$ {Number(item.valor).toFixed(2).replace(".", ",")}
+      </td>
+
+      <td className="px-4 py-3">
+        {isExpense ? (
+          <div className="flex items-center gap-2 text-rose-600">
+            <FaRegArrowAltCircleDown />
+            <span>Saída</span>
+          </div>
         ) : (
-          <FaRegArrowAltCircleUp color="green" />
+          <div className="flex items-center gap-2 text-teal-600">
+            <FaRegArrowAltCircleUp />
+            <span>Entrada</span>
+          </div>
         )}
       </td>
-      <td>
-        {" "}
-        <FaTrash onClick={() => onDelete(item.id)} />{" "}
+
+      <td className="px-4 py-3 text-center">
+        <button
+          onClick={() => onDelete(item.id)}
+          className="text-gray-400 hover:text-rose-600 transition-colors"
+          title="Excluir transação"
+        >
+          <FaTrash />
+        </button>
       </td>
     </tr>
   );
